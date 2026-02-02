@@ -3,11 +3,17 @@ import { ThemedText } from "@components/themed-text";
 import { View, type TextProps } from "react-native";
 
 export type CalendarProps = TextProps & {
-  monthNumber: number;
-  year: number;
+  currentMonthNumber: number;
+  currentYear: number;
+  currentDay: number;
 };
 
-const Calendar = ({ monthNumber, year, ...otherProps }: CalendarProps) => {
+const Calendar = ({
+  currentMonthNumber,
+  currentYear,
+  currentDay,
+  ...otherProps
+}: CalendarProps) => {
   return (
     <View
       style={{
@@ -17,7 +23,7 @@ const Calendar = ({ monthNumber, year, ...otherProps }: CalendarProps) => {
       }}
     >
       {Array.from(
-        { length: MONTHS[monthNumber as keyof typeof MONTHS].days },
+        { length: MONTHS[currentMonthNumber as keyof typeof MONTHS].days },
         (_, i) => {
           return (
             <View key={i}>
@@ -32,6 +38,12 @@ const Calendar = ({ monthNumber, year, ...otherProps }: CalendarProps) => {
                   borderColor: "gray",
                   borderWidth: 1,
                   paddingInline: 6,
+                  backgroundColor:
+                    i + 1 === currentDay &&
+                    currentMonthNumber === new Date().getMonth() + 1 &&
+                    currentYear === new Date().getFullYear()
+                      ? "rgba(100, 149, 237, 0.3)"
+                      : "transparent", // This marks the exactly current day (for example 10/2/2026, not any 10th of any year or any month, only the 10th of February 2026)
                 }}
               >
                 {i + 1}
@@ -42,6 +54,6 @@ const Calendar = ({ monthNumber, year, ...otherProps }: CalendarProps) => {
       )}
     </View>
   );
-}
+};
 
-export default Calendar
+export default Calendar;

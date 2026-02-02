@@ -1,22 +1,33 @@
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
 import { Stack } from "expo-router";
-import { ThemeProvider, DarkTheme, DefaultTheme} from "@react-navigation/native";
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useColorScheme } from "@/hooks/use-color-scheme";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
-  return(
-    <ThemeProvider
-      value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-    >
+  return (
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen
-          name="index"
+          name="(tabs)"
           options={{
             headerShown: false,
           }}
         />
+        <Stack.Protected guard={false}>
+          <Stack.Screen
+            name="calendarPage"
+            options={{
+              headerShown: false,
+              title: "Calendar",
+            }}
+          />
+        </Stack.Protected>
       </Stack>
     </ThemeProvider>
   );

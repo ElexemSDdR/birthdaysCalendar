@@ -1,30 +1,31 @@
 import { useState } from "react";
-import { Image } from "react-native";
 
-import { ThemedView } from "@components/themed-view"
+import Calendar from "@/components/calendar";
 import CalendarDate from "@components/calendar-date";
-import Calendar from "@/components/calendar"
+import { ThemedView } from "@components/themed-view";
 
-const Index = () => {
+const CalendarPage = () => {
   const currentMonthNumber = new Date().getMonth() + 1;
   const currentYearNumber = new Date().getFullYear();
+  const currentDay = new Date().getDate();
+
   const [currentMonth, setCurrentMonth] = useState(currentMonthNumber);
   const [currentYear, setCurrentYear] = useState(currentYearNumber);
 
   const previousMonth = () => {
-    setCurrentMonth((prev: number) => prev === 1 ? 12 : prev - 1);
-    setCurrentYear((year: number) => currentMonth === 1 ? year - 1 : year);
+    setCurrentMonth((prev: number) => (prev === 1 ? 12 : prev - 1));
+    setCurrentYear((year: number) => (currentMonth === 1 ? year - 1 : year));
   };
 
   const nextMonth = () => {
-    setCurrentMonth((next: number) => next === 12 ? 1 : next + 1);
-    setCurrentYear((year: number) => currentMonth === 12 ? year + 1 : year);    
+    setCurrentMonth((next: number) => (next === 12 ? 1 : next + 1));
+    setCurrentYear((year: number) => (currentMonth === 12 ? year + 1 : year));
   };
 
   const restartCalendar = () => {
     setCurrentMonth(currentMonthNumber);
     setCurrentYear(currentYearNumber);
-  }
+  };
 
   return (
     <ThemedView
@@ -32,25 +33,24 @@ const Index = () => {
       darkColor="black"
       style={{
         flex: 1,
-        alignItems: 'center',
+        alignItems: "center",
         marginTop: 160,
       }}
     >
       <CalendarDate
-        monthNumber={currentMonth}
-        year={currentYear}
+        currentMonthNumber={currentMonth}
+        currentYear={currentYear}
         previousMonth={previousMonth}
         nextMonth={nextMonth}
         restartCalendar={restartCalendar}
-      >
-        
-      </CalendarDate>
+      />
       <Calendar
-        monthNumber={currentMonth}
-        year={currentYear}
+        currentMonthNumber={currentMonth}
+        currentYear={currentYear}
+        currentDay={currentDay}
       />
     </ThemedView>
   );
-}
+};
 
-export default Index;
+export default CalendarPage;
