@@ -13,13 +13,7 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen
-          name="(tabs)"
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Protected guard={false}>
+        <Stack.Protected guard={true}>
           <Stack.Screen
             name="calendarPage"
             options={{
@@ -28,6 +22,12 @@ export default function RootLayout() {
             }}
           />
         </Stack.Protected>
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack>
     </ThemeProvider>
   );

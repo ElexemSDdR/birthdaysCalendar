@@ -20,9 +20,10 @@ const styleSheet = StyleSheet.create({
     right: 20,
     paddingTop: 2,
     paddingBottom: 6,
-    paddingInline: 10,
+    paddingInline: 3,
     overflow: "visible",
     borderRadius: 50,
+    transform: [{ scale: 1.3 }],
   },
   button: {
     borderRadius: 50,
