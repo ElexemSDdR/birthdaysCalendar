@@ -1,33 +1,33 @@
-import { Tabs } from "expo-router";
-import React from "react";
+import { Tabs } from 'expo-router'
+import React from 'react'
 
-import { Colors } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { Colors } from '@/constants/theme'
+import { useColorScheme } from '@/hooks/use-color-scheme'
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme()
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
       }}
     >
       <Tabs.Screen
         name="login"
         options={{
-          title: "Login",
-          tabBarLabel: "Login",
+          title: 'Login',
+          tabBarLabel: 'Login',
         }}
       />
       <Tabs.Screen
         name="register"
         options={{
-          title: "Register",
-          tabBarLabel: "Register",
+          title: 'Register',
+          tabBarLabel: 'Register',
         }}
       />
     </Tabs>
-  );
+  )
 }

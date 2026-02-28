@@ -2,23 +2,23 @@ import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
-} from "@react-navigation/native";
-import { Stack } from "expo-router";
+} from '@react-navigation/native'
+import { Stack } from 'expo-router'
 
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useColorScheme } from '@/hooks/use-color-scheme'
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme()
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Protected guard={true}>
           <Stack.Screen
             name="calendarPage"
             options={{
               headerShown: false,
-              title: "Calendar",
+              title: 'Calendar',
             }}
           />
         </Stack.Protected>
@@ -30,5 +30,5 @@ export default function RootLayout() {
         />
       </Stack>
     </ThemeProvider>
-  );
+  )
 }
